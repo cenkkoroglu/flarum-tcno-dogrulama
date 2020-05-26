@@ -310,7 +310,6 @@ Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_components_S
 Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_components_UserCard__WEBPACK_IMPORTED_MODULE_6___default.a.prototype, 'view', function (view) {
   var user = this.props.user;
   var badges = user.badges().toArray();
-  if (!badges.length) return view;
   var container = get(view, 'children[0].children[0]')[0];
   var profile = container && container.children.find(function (i) {
     return i.attrs && i.attrs.className === 'UserCard-profile';

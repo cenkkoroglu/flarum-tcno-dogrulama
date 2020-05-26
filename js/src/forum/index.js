@@ -38,8 +38,6 @@ extend(UserCard.prototype, 'view', function(view) {
   const user = this.props.user;
   const badges = user.badges().toArray();
 
-  if (!badges.length) return view;
-
   const container = get(view, 'children[0].children[0]')[0];
   const profile = container && container.children.find(i => i.attrs && i.attrs.className === 'UserCard-profile');
 
