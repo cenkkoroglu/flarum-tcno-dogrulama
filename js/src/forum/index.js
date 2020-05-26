@@ -21,7 +21,7 @@ const get = (from, ...selectors) =>
   );
 
 
-extend(SessionDropdown.prototype, 'items', function (items, user) {
+extend(SessionDropdown.prototype, 'items', function (items) {
   if (app.session.user) {
     items.add('account-verification', Button.component({
       icon: 'fas fa-user-check',

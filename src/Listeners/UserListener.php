@@ -17,6 +17,7 @@ class UserListener
     {
         if ($event->isSerializer(UserSerializer::class)) {
             $event->attributes['identity_approved'] = $event->model->identity_approved;
+            $event->attributes['identity_number'] = $event->model->identity_number;
         }
     }
 }

@@ -2,8 +2,9 @@
 
 namespace CenkKoroglu\TCNoDogrulama\Controllers;
 
+use Flarum\User\User;
 use Flarum\User\UserRepository;
-use Laminas\Diactoros\Response\HtmlResponse;
+use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -27,16 +28,23 @@ class AccountVerificationController implements RequestHandlerInterface
             'dogumyili' => $data["birthYear"],
         );
 
+        $is_approved_before = User::where('identity_number', sha1($data["tcno"]))->first();
+
+        if ($is_approved_before) {
+            return new JsonResponse(Array("success" => false, "data" => "Girdiğiniz TC Kimlik Numarası İle Daha Önce Doğrulama Yapılmış."), 200);
+        }
+
         $check = $this->validate($data);
 
         if ($check) {
             $actor = $request->getAttribute('actor');
             $user = $this->users->findOrFail($actor->getAttributes()["id"], $actor);
             $user->identity_approved = 1;
+            $user->identity_number = sha1($data["tcno"]);
             $user->save();
         }
 
-        return new HtmlResponse($check ? "true" : "false", 200);
+        return new JsonResponse(Array("success" => $check, "data" => $check ? "" : "Girdiğiniz Bilgiler Geçersiz."), 200);
     }
 
     private static function verify($input)

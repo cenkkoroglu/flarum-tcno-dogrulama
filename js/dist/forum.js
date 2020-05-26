@@ -222,10 +222,10 @@ var AccountVerificationModal = /*#__PURE__*/function (_Modal) {
         }).then(function (updated) {
           _this.alert = null;
 
-          if (!updated) {
+          if (updated.success !== true) {
             _this.alert = new flarum_components_Alert__WEBPACK_IMPORTED_MODULE_4___default.a({
               type: "error",
-              children: "Bilgiler doğrulanamadı."
+              children: updated.data
             });
             m.redraw();
           } else {
@@ -296,7 +296,7 @@ var get = function get(from) {
   });
 };
 
-Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_components_SessionDropdown__WEBPACK_IMPORTED_MODULE_2___default.a.prototype, 'items', function (items, user) {
+Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_components_SessionDropdown__WEBPACK_IMPORTED_MODULE_2___default.a.prototype, 'items', function (items) {
   if (flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.session.user) {
     items.add('account-verification', flarum_components_Button__WEBPACK_IMPORTED_MODULE_4___default.a.component({
       icon: 'fas fa-user-check',

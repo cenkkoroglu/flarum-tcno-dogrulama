@@ -92,10 +92,10 @@ export default class AccountVerificationModal extends Modal {
             errorHandler: this.onerror.bind(this)
           }).then(updated => {
             this.alert = null;
-            if (!updated) {
+            if (updated.success !== true) {
               this.alert = new Alert({
                 type: "error",
-                children: "Bilgiler doğrulanamadı."
+                children: updated.data
               });
               m.redraw();
             } else {
