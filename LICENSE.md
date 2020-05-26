@@ -1,4 +1,4 @@
-Copyright (C) 2006 by Rob Landley <rob@landley.net>
+Copyright (C) 2020 by Cenk Koroglu <info@cenkkoroglu.com.tr>
 
 Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted.
 
